@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 @ConfigurationProperties(prefix = "jwt")
@@ -38,7 +39,7 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String generateToken(UserDetails userDetails) {
-        Map<String, Object> claims = new HashMap<>(2);
+        Map<String, Object> claims = new HashMap<String, Object>();
         claims.put("sub", userDetails.getUsername());
         claims.put("created", new Date());
         return generateToken(claims);
